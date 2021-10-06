@@ -46,7 +46,7 @@ if let roomCount = john.residence?.numberOfRooms {
 print("\n//Определение классовых моделей для ОП")
 
 class Person1 {
-    var residence: Residence?
+    var residence: Residence1?
 }
 
 class Residence1 {
@@ -89,3 +89,45 @@ class Address1 {
         }
     }
 }
+
+
+//MARK: Доступ к свойствам через ОП
+print("\n//Доступ к свойствам через ОП")
+
+let john1 = Person1()
+if let roomCount = john1.residence?.numberOfRooms {
+    print("John's residence has \(roomCount) room(s).")
+} else {
+    print("Unable to retrieve the number of rooms.")
+}
+// Выведет "Unable to retrieve the number of rooms."
+
+let someAddress = Address1()
+someAddress.buildingNumber = "29"
+someAddress.street = "Acacia Road"
+//john.residence? все еще nil, потому что код справа после присваивания не вычисляется
+john1.residence?.address = someAddress
+print(john1.residence)
+
+func createAddress() -> Address1 {
+    print("Function was called.")
+    
+    let someAddress = Address1()
+    someAddress.buildingNumber = "29"
+    someAddress.street = "Acacia Road"
+    
+    return someAddress
+}
+//john.residence? все еще nil, потому что код справа после присваивания не вычисляется, и print не выводится
+john1.residence?.address = createAddress()
+print(john1.residence)
+
+//это присваивание значения
+john1.residence = Residence1()
+print(john1.residence)
+
+//это вызов опциональной последовательности, код выполняется так как уже не nil
+john1.residence?.address = createAddress()
+john1.residence? = Residence1()
+john1.residence?.address = createAddress()
+
