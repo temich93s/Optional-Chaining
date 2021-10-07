@@ -182,3 +182,15 @@ if let firstRoomName = john1.residence?[0].name {
 john1.residence?[0] = Room1(name: "Bathroom")
 print(john1.residence?[0].name)
 print(john1.residence![0].name)
+
+
+//MARK: Получение доступа к сабскрипту (индексу) опционального типа
+print("\n//Получение доступа к сабскрипту (индексу) опционального типа")
+
+var testScores = ["Dave": [86, 82, 84], "Bev": [79, 94, 81]]
+testScores["Dave"]?[0] = 91
+print(testScores["Bev"]?[0] += 1)
+print(testScores["Brian"]?[0] = 72)
+print(testScores)
+// массив "Dave" теперь имеет вид [91, 82, 84], массив "Bev" - [80, 94, 81]
+
