@@ -194,3 +194,46 @@ print(testScores["Brian"]?[0] = 72)
 print(testScores)
 // массив "Dave" теперь имеет вид [91, 82, 84], массив "Bev" - [80, 94, 81]
 
+
+//MARK: Соединение нескольких уровней ОП
+print("\n//Соединение нескольких уровней ОП")
+
+if let johnsStreet = john1.residence?.address?.street {
+    print("John's street name is \(johnsStreet).")
+} else {
+    print("Unable to retrieve the address.")
+}
+// Выведет "Unable to retrieve the address."
+
+let johnsAddress = Address1()
+johnsAddress.buildingName = "The Larches"
+johnsAddress.street = "Laurel Street"
+john1.residence?.address = johnsAddress
+ 
+if let johnsStreet = john1.residence?.address?.street {
+    print("John's street name is \(johnsStreet).")
+} else {
+    print("Unable to retrieve the address.")
+}
+// Выведет "John's street name is Laurel Street."
+
+
+//MARK: Связывание методов в ОП с опциональными возвращаемыми значениями
+print("\n//Связывание методов в ОП с опциональными возвращаемыми значениями")
+
+if let buildingIdentifier = john1.residence?.address?.buildingIdentifier() {
+    print("John's building identifier is \(buildingIdentifier).")
+}
+// Выведет "John's building identifier is The Larches."
+
+if let beginsWithThe = john1.residence?.address?.buildingIdentifier()?.hasPrefix("The") {
+    if beginsWithThe {
+        print("John's building identifier begins with \"The\".")
+    } else {
+        print("John's building identifier does not begin with \"The\".")
+    }
+}
+// Выведет "John's building identifier begins with "The"."
+
+print(john1.residence?.address?.buildingIdentifier())
+print(john1.residence?.address?.buildingIdentifier()!)
