@@ -150,3 +150,35 @@ if (john1.residence?.address = someAddress) != nil {
     print("Не было возможности установить адрес.")
 }
 // Выведет "Не было возможности установить адрес."
+
+
+//MARK: Доступ к сабскриптам через ОП
+print("\n//Доступ к сабскриптам через ОП")
+
+if let firstRoomName = john1.residence?[0].name {
+    print("Название первой комнаты \(firstRoomName).")
+} else {
+    print("Никак не получить название первой комнаты.")
+}
+// Выведет "Никак не получить название первой комнаты."
+
+//john.residence? все еще nil, потому что код справа после присваивания не вычисляется
+john1.residence?[0] = Room1(name: "Bathroom")
+print(john1.residence?[0])
+
+let johnsHouse = Residence1()
+johnsHouse.rooms.append(Room1(name: "Гостиная"))
+johnsHouse.rooms.append(Room1(name: "Кухня"))
+john1.residence = johnsHouse
+ 
+if let firstRoomName = john1.residence?[0].name {
+    print("Название первой комнаты \(firstRoomName).")
+} else {
+    print("Никак не получить название первой комнаты.")
+}
+// Выведет "Название первой комнаты Гостиная."
+
+//код выполняется так как уже не nil
+john1.residence?[0] = Room1(name: "Bathroom")
+print(john1.residence?[0].name)
+print(john1.residence![0].name)
