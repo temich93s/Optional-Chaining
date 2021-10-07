@@ -131,3 +131,22 @@ john1.residence?.address = createAddress()
 john1.residence? = Residence1()
 john1.residence?.address = createAddress()
 
+
+//MARK: Вызов методов через ОП
+print("\n//Вызов методов через ОП")
+
+john1.residence = nil
+
+if john1.residence?.printNumberOfRooms() != nil {
+    print("Есть возможность вывести общее количество комнат.")
+} else {
+    print("Нет возможности вывести общее количество комнат.")
+}
+// Выведет "Нет возможности вывести общее количество комнат."
+
+if (john1.residence?.address = someAddress) != nil {
+    print("Была возможность установить адрес.")
+} else {
+    print("Не было возможности установить адрес.")
+}
+// Выведет "Не было возможности установить адрес."
